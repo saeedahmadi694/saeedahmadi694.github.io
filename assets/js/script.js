@@ -210,39 +210,39 @@
     /* ============================================================ */
     /* Custom Cursor start
     /* ============================================================ */
-    if ($('.custom_cursor').length) {
-        var cursor = document.querySelector('.custom_cursor_one');
-        var cursorInner = document.querySelector('.custom_cursor_two');
-        var anchors = document.querySelectorAll('a');
+    // if ($('.custom_cursor').length) {
+    //     var cursor = document.querySelector('.custom_cursor_one');
+    //     var cursorInner = document.querySelector('.custom_cursor_two');
+    //     var anchors = document.querySelectorAll('a');
 
-        document.addEventListener('mousemove', function(e) {
-            var x = e.clientX;
-            var y = e.clientY;
-            cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
-        });
-        document.addEventListener('mousemove', function(e) {
-            var x = e.clientX;
-            var y = e.clientY;
-            cursorInner.style.left = x + 'px';
-            cursorInner.style.top = y + 'px';
-        });
-        document.addEventListener('mousedown', function() {
-            cursor.classList.add('click');
-            cursorInner.classList.add('custom_cursor_hover');
-        });
-        document.addEventListener('mouseup', function() {
-            cursor.classList.remove('click');
-            cursorInner.classList.remove('custom_cursor_hover');
-        });
-        anchors.forEach((item) => {
-            item.addEventListener('mouseover', () => {
-                cursor.classList.add('custom_cursor_hover');
-            });
-            item.addEventListener('mouseleave', () => {
-                cursor.classList.remove('custom_cursor_hover');
-            });
-        });
-    }
+    //     document.addEventListener('mousemove', function(e) {
+    //         var x = e.clientX;
+    //         var y = e.clientY;
+    //         cursor.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+    //     });
+    //     document.addEventListener('mousemove', function(e) {
+    //         var x = e.clientX;
+    //         var y = e.clientY;
+    //         cursorInner.style.left = x + 'px';
+    //         cursorInner.style.top = y + 'px';
+    //     });
+    //     document.addEventListener('mousedown', function() {
+    //         cursor.classList.add('click');
+    //         cursorInner.classList.add('custom_cursor_hover');
+    //     });
+    //     document.addEventListener('mouseup', function() {
+    //         cursor.classList.remove('click');
+    //         cursorInner.classList.remove('custom_cursor_hover');
+    //     });
+    //     anchors.forEach((item) => {
+    //         item.addEventListener('mouseover', () => {
+    //             cursor.classList.add('custom_cursor_hover');
+    //         });
+    //         item.addEventListener('mouseleave', () => {
+    //             cursor.classList.remove('custom_cursor_hover');
+    //         });
+    //     });
+    // }
     // Custom Cursor End
 
 
@@ -251,10 +251,12 @@
     /* ============================================================ */
     function animateElements() {
         $('.minfo__sidebar .progressCircle').each(function() {
-            var elementPos = $(this).offset().top;
-            var topOfWindow = $(window).scrollTop();
-            var percent = $(this).find('.circle').attr('data-percent');
-            var animate = $(this).data('animate');
+            let elementPos = $(this).offset().top;
+            let topOfWindow = $(window).scrollTop();
+            let percent = $(this).find('.circle').attr('data-percent');
+            let circleFill = $(this).find('.circle').attr('data-circlefill');
+            let circleEmpty = $(this).find('.circle').attr('data-circleempty');
+            let animate = $(this).data('animate');
             if (elementPos < topOfWindow + $(window).height() - 30 && !animate) {
                 $(this).data('animate', true);
                 $(this).find('.circle').circleProgress({
@@ -262,8 +264,8 @@
                     value: percent / 100,
                     thickness: 2,
                     lineCap: 'round',
-                    emptyFill: '#777777',
-                    fill: '#00BC91',
+                    mptyFill: `${circleEmpty}`,
+                    fill: `${circleFill}`,
                     size: $('.circle').width(),
                 }).on(
                     'circle-animation-progress',
@@ -274,10 +276,12 @@
             }
         });
         $('.skills-slider .progressCircle').each(function() {
-            var elementPos = $(this).offset().top;
-            var topOfWindow = $(window).scrollTop();
-            var percent = $(this).find('.circle').attr('data-percent');
-            var animate = $(this).data('animate');
+            let elementPos = $(this).offset().top;
+            let topOfWindow = $(window).scrollTop();
+            let percent = $(this).find('.circle').attr('data-percent');
+            let circleFill = $(this).find('.circle').attr('data-circlefill');
+            let circleEmpty = $(this).find('.circle').attr('data-circleempty');
+            let animate = $(this).data('animate');
             if (elementPos < topOfWindow + $(window).height() - 30 && !animate) {
                 $(this).data('animate', true);
                 $(this).find('.circle').circleProgress({
@@ -285,8 +289,8 @@
                     value: percent / 100,
                     thickness: 1.5,
                     lineCap: 'round',
-                    emptyFill: '#777777',
-                    fill: '#00BC91',
+                    emptyFill: `${circleEmpty}`,
+                    fill: `${circleFill}`,
                     size: $('.skills-slider .circle').width(),
                 }).on(
                     'circle-animation-progress',
